@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   TextField,
   Button,
@@ -7,44 +7,49 @@ import {
   Box,
   Alert,
   Link,
-} from '@mui/material';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+} from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
-        username,
-        email,
-        password,
-      });
-      localStorage.setItem('token', response.data.token);
-      navigate('/home');
+      const response = await axios.post(
+        "https://gemetry-be.onrender.com/api/auth/register",
+        {
+          username,
+          email,
+          password,
+        }
+      );
+      localStorage.setItem("token", response.data.token);
+      navigate("/home");
     } catch (err) {
-      setError(err.response?.data?.error || 'An error occurred during registration');
+      setError(
+        err.response?.data?.error || "An error occurred during registration"
+      );
     }
   };
 
   return (
     <div className="auth-page">
       <Container maxWidth="sm" className="auth-container">
-        <Box sx={{ textAlign: 'center', mb: 4 }}>
+        <Box sx={{ textAlign: "center", mb: 4 }}>
           <Typography component="h1" variant="h4" color="primary" gutterBottom>
             Tạo Tài Khoản
           </Typography>
@@ -103,13 +108,13 @@ const Register = () => {
           >
             Đăng Ký
           </Button>
-          <Box sx={{ textAlign: 'center', mt: 2 }}>
+          <Box sx={{ textAlign: "center", mt: 2 }}>
             <Typography variant="body2" color="textSecondary">
-              Đã có tài khoản?{' '}
+              Đã có tài khoản?{" "}
               <Link
                 component="button"
                 variant="body2"
-                onClick={() => navigate('/login')}
+                onClick={() => navigate("/login")}
               >
                 Đăng nhập
               </Link>
@@ -121,4 +126,4 @@ const Register = () => {
   );
 };
 
-export default Register; 
+export default Register;

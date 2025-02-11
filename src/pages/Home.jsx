@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Container,
   Typography,
@@ -7,16 +7,16 @@ import {
   CircularProgress,
   Alert,
   Paper,
-} from '@mui/material';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import ReactMarkdown from 'react-markdown';
+} from "@mui/material";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import ReactMarkdown from "react-markdown";
 
 const Home = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [solution, setSolution] = useState('');
+  const [error, setError] = useState("");
+  const [solution, setSolution] = useState("");
 
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
@@ -31,30 +31,33 @@ const Home = () => {
     if (!selectedFile) return;
 
     setLoading(true);
-    setError('');
-    setSolution('');
+    setError("");
+    setSolution("");
 
     const formData = new FormData();
-    formData.append('image', selectedFile);
+    formData.append("image", selectedFile);
 
     try {
-      const response = await fetch('http://localhost:5000/api/problems/solve', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      const response = await fetch(
+        "https://gemetry-be.onrender.com/api/problems/solve",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
       const data = await response.json();
-      
+
       if (data.error) {
         setError(data.error);
       } else {
         setSolution(data.solution);
       }
     } catch (err) {
-      setError(err.message || 'An error occurred');
+      setError(err.message || "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -73,7 +76,12 @@ const Home = () => {
       <Typography variant="h4" component="h1" gutterBottom align="center">
         Giải Toán Thông Minh
       </Typography>
-      <Typography variant="subtitle1" color="textSecondary" align="center" gutterBottom>
+      <Typography
+        variant="subtitle1"
+        color="textSecondary"
+        align="center"
+        gutterBottom
+      >
         Tải lên hình ảnh bài toán của bạn để nhận giải pháp
       </Typography>
 
@@ -82,7 +90,7 @@ const Home = () => {
           type="file"
           accept="image/*"
           onChange={handleFileSelect}
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           id="image-upload"
         />
         {!imagePreview ? (
@@ -97,29 +105,36 @@ const Home = () => {
             </Button>
           </label>
         ) : (
-          <Box sx={{ width: '100%', mt: 2 }}>
-            <Paper 
-              elevation={3} 
-              sx={{ 
-                p: 2, 
-                mb: 2, 
-                maxWidth: '500px', 
-                margin: '0 auto',
-                position: 'relative' 
+          <Box sx={{ width: "100%", mt: 2 }}>
+            <Paper
+              elevation={3}
+              sx={{
+                p: 2,
+                mb: 2,
+                maxWidth: "500px",
+                margin: "0 auto",
+                position: "relative",
               }}
             >
               <img
                 src={imagePreview}
                 alt="Xem trước bài toán"
                 style={{
-                  width: '100%',
-                  height: 'auto',
-                  maxHeight: '400px',
-                  objectFit: 'contain',
-                  borderRadius: '4px',
+                  width: "100%",
+                  height: "auto",
+                  maxHeight: "400px",
+                  objectFit: "contain",
+                  borderRadius: "4px",
                 }}
               />
-              <Box sx={{ mt: 2, display: 'flex', gap: 2, justifyContent: 'center' }}>
+              <Box
+                sx={{
+                  mt: 2,
+                  display: "flex",
+                  gap: 2,
+                  justifyContent: "center",
+                }}
+              >
                 <Button
                   variant="outlined"
                   color="error"
@@ -132,7 +147,7 @@ const Home = () => {
                   onClick={handleFileUpload}
                   disabled={loading}
                 >
-                  {loading ? <CircularProgress size={24} /> : 'Giải Bài Toán'}
+                  {loading ? <CircularProgress size={24} /> : "Giải Bài Toán"}
                 </Button>
               </Box>
             </Paper>
@@ -147,25 +162,27 @@ const Home = () => {
       )}
 
       {(solution || loading) && (
-        <Paper sx={{ mt: 4, p: 3, bgcolor: '#f8f8f8', borderRadius: 1 }}>
+        <Paper sx={{ mt: 4, p: 3, bgcolor: "#f8f8f8", borderRadius: 1 }}>
           <Typography variant="h6" gutterBottom>
             Lời Giải:
           </Typography>
-          <Box sx={{ 
-            mt: 2,
-            '& p': { margin: '0.5em 0' },
-            '& pre': {
-              backgroundColor: '#f1f1f1',
-              padding: '0.5em',
-              borderRadius: '4px',
-              overflowX: 'auto'
-            },
-            '& code': {
-              fontFamily: 'monospace'
-            }
-          }}>
+          <Box
+            sx={{
+              mt: 2,
+              "& p": { margin: "0.5em 0" },
+              "& pre": {
+                backgroundColor: "#f1f1f1",
+                padding: "0.5em",
+                borderRadius: "4px",
+                overflowX: "auto",
+              },
+              "& code": {
+                fontFamily: "monospace",
+              },
+            }}
+          >
             {loading ? (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                 <CircularProgress size={20} />
                 <Typography variant="body2" color="textSecondary">
                   Đang tạo lời giải...
@@ -181,4 +198,4 @@ const Home = () => {
   );
 };
 
-export default Home; 
+export default Home;
