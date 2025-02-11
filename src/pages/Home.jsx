@@ -38,16 +38,13 @@ const Home = () => {
     formData.append("image", selectedFile);
 
     try {
-      const response = await fetch(
-        "https://gemetry-be.onrender.com/api/problems/solve",
-        {
-          method: "POST",
-          body: formData,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const response = await fetch("http://localhost:5000/api/problems/solve", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       const data = await response.json();
 
@@ -74,7 +71,7 @@ const Home = () => {
   return (
     <Container maxWidth="md">
       <Typography variant="h4" component="h1" gutterBottom align="center">
-        Math Problem Solver
+        Giải Toán Thông Minh
       </Typography>
       <Typography
         variant="subtitle1"
@@ -82,7 +79,7 @@ const Home = () => {
         align="center"
         gutterBottom
       >
-        Upload an image of your math problem to get the solution
+        Tải lên hình ảnh bài toán của bạn để nhận giải pháp
       </Typography>
 
       <div className="upload-section">
@@ -101,7 +98,7 @@ const Home = () => {
               startIcon={<CloudUploadIcon />}
               size="large"
             >
-              Choose Image
+              Chọn Ảnh
             </Button>
           </label>
         ) : (
@@ -118,7 +115,7 @@ const Home = () => {
             >
               <img
                 src={imagePreview}
-                alt="Problem preview"
+                alt="Xem trước bài toán"
                 style={{
                   width: "100%",
                   height: "auto",
@@ -140,14 +137,14 @@ const Home = () => {
                   color="error"
                   onClick={handleRemoveImage}
                 >
-                  Remove Image
+                  Xóa Ảnh
                 </Button>
                 <Button
                   variant="contained"
                   onClick={handleFileUpload}
                   disabled={loading}
                 >
-                  {loading ? <CircularProgress size={24} /> : "Solve Problem"}
+                  {loading ? <CircularProgress size={24} /> : "Giải Bài Toán"}
                 </Button>
               </Box>
             </Paper>
@@ -164,7 +161,7 @@ const Home = () => {
       {(solution || loading) && (
         <Paper sx={{ mt: 4, p: 3, bgcolor: "#f8f8f8", borderRadius: 1 }}>
           <Typography variant="h6" gutterBottom>
-            Solution:
+            Lời Giải:
           </Typography>
           <Box
             sx={{
@@ -185,7 +182,7 @@ const Home = () => {
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                 <CircularProgress size={20} />
                 <Typography variant="body2" color="textSecondary">
-                  Generating solution...
+                  Đang tạo lời giải...
                 </Typography>
               </Box>
             ) : (
