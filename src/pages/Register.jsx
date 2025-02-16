@@ -30,7 +30,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "https://gemetry-be.onrender.com/api/auth/register",
+        "http://35.201.161.182:5000/api/auth/register",
         {
           username,
           email,

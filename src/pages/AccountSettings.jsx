@@ -12,7 +12,7 @@ const AccountSettings = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          "https://gemetry-be.onrender.com/api/user/profile",
+          "http://35.201.161.182:5000/api/user/profile",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -32,7 +32,7 @@ const AccountSettings = () => {
     e.preventDefault();
     try {
       await axios.put(
-        "https://gemetry-be.onrender.com/api/user/profile",
+        "http://35.201.161.182:5000/api/user/profile",
         {
           username,
           email,

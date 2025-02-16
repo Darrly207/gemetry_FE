@@ -21,7 +21,7 @@ const Login = () => {
     setError("");
     try {
       const response = await fetch(
-        "https://gemetry-be.onrender.com/api/auth/login",
+        "http://35.201.161.182:5000/api/auth/login",
         {
           method: "POST",
           headers: {
