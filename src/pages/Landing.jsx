@@ -96,6 +96,7 @@ const Landing = () => {
                   fontSize: { xs: "2.5rem", md: "3.75rem" },
                   lineHeight: 1.2,
                   color: "black",
+                  fontFamily: "Be Vietnam Pro",
                 }}
               >
                 Giải Toán
