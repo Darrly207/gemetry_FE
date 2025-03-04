@@ -44,8 +44,8 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar 
-      position="fixed" 
+    <AppBar
+      position="fixed"
       className="navbar"
       sx={{
         backgroundColor: 'rgba(255, 255, 255, 0.9)',
@@ -53,8 +53,8 @@ const Navbar = () => {
       }}
     >
       <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 4 } }}>
-        <Toolbar 
-          sx={{ 
+        <Toolbar
+          sx={{
             minHeight: '30px !important',
             padding: '0 !important',
             display: 'flex',
@@ -62,26 +62,26 @@ const Navbar = () => {
           }}
         >
           {/* Left side - Logo, Brand and Navigation */}
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
+          <Box sx={{
+            display: 'flex',
+            alignItems: 'center',
             gap: 1
           }}>
             {/* Logo and Brand */}
-            <Box 
-              sx={{ 
-                display: 'flex', 
-                alignItems: 'center', 
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
                 gap: 1,
                 cursor: 'pointer'
               }}
               onClick={() => navigate('/')}
             >
               <FunctionsIcon sx={{ fontSize: 28, color: '#4461F2' }} />
-              <Typography 
-                variant="h6" 
-                component="div" 
-                sx={{ 
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
                   fontWeight: 600,
                   color: '#2C3E50',
                   display: { xs: 'none', sm: 'block' },
@@ -94,8 +94,8 @@ const Navbar = () => {
 
             {/* Navigation Links */}
             {!isAuthPage && (
-              <Box sx={{ 
-                display: 'flex', 
+              <Box sx={{
+                display: 'flex',
                 gap: 2,
                 '& .MuiButton-root': {
                   color: '#2C3E50',
@@ -108,18 +108,18 @@ const Navbar = () => {
                   }
                 }
               }}>
-                <Button 
+                <Button
                   onClick={() => navigate('/')}
-                  sx={{ 
+                  sx={{
                     borderBottom: location.pathname === '/' ? '2px solid #4461F2' : '2px solid transparent',
                     borderRadius: 0
                   }}
                 >
                   Trang chủ
                 </Button>
-                <Button 
+                <Button
                   onClick={() => navigate('/about')}
-                  sx={{ 
+                  sx={{
                     borderBottom: location.pathname === '/about' ? '2px solid #4461F2' : '2px solid transparent',
                     borderRadius: 0
                   }}
@@ -134,8 +134,8 @@ const Navbar = () => {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             {isLoggedIn ? (
               <>
-                <Typography 
-                  sx={{ 
+                <Typography
+                  sx={{
                     color: '#2C3E50',
                     fontSize: '1rem',
                     fontWeight: 500
@@ -143,17 +143,17 @@ const Navbar = () => {
                 >
                   {username}
                 </Typography>
-                <IconButton 
+                <IconButton
                   onClick={handleClick}
-                  sx={{ 
+                  sx={{
                     width: '36px',
                     height: '36px',
                     padding: 0
                   }}
                 >
-                  <Avatar 
-                    sx={{ 
-                      width: 36, 
+                  <Avatar
+                    sx={{
+                      width: 36,
                       height: 36,
                       bgcolor: '#4461F2',
                       fontSize: '1rem'
@@ -192,10 +192,10 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Button 
-                  variant="outlined" 
+                <Button
+                  variant="outlined"
                   onClick={() => navigate('/login')}
-                  sx={{ 
+                  sx={{
                     borderColor: '#4461F2',
                     color: '#4461F2',
                     py: 0.5,
@@ -209,8 +209,8 @@ const Navbar = () => {
                 >
                   Đăng nhập
                 </Button>
-                <Button 
-                  variant="contained" 
+                <Button
+                  variant="contained"
                   onClick={() => navigate('/register')}
                   sx={{
                     backgroundColor: '#4461F2',

@@ -41,7 +41,7 @@ const Home = () => {
     formData.append('image', selectedFile);
 
     try {
-      const response = await fetch('http://localhost:5000/api/problems/solve', {
+      const response = await fetch('http://35.201.161.182:5000/api/problems/solve', {
         method: 'POST',
         body: formData,
         headers: {
@@ -50,7 +50,7 @@ const Home = () => {
       });
 
       const data = await response.json();
-      
+
       if (data.error) {
         setError(data.error);
       } else {
@@ -103,14 +103,14 @@ const Home = () => {
           </label>
         ) : (
           <Box sx={{ width: '100%', mt: 2 }}>
-            <Paper 
-              elevation={3} 
-              sx={{ 
-                p: 2, 
-                mb: 2, 
-                maxWidth: '500px', 
+            <Paper
+              elevation={3}
+              sx={{
+                p: 2,
+                mb: 2,
+                maxWidth: '500px',
                 margin: '0 auto',
-                position: 'relative' 
+                position: 'relative'
               }}
             >
               <img
@@ -156,7 +156,7 @@ const Home = () => {
           <Typography variant="h6" gutterBottom>
             Lời Giải:
           </Typography>
-          <Box sx={{ 
+          <Box sx={{
             mt: 2,
             '& p': { margin: '0.5em 0' },
             '& pre': {
